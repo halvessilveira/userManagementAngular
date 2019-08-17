@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { switchMap } from 'rxjs/operators'
+import { UserDTO } from 'src/models/user.dto';
+import { UserService } from 'src/services/user.service';
 
 @Component({
   selector: 'app-user-form',
@@ -8,12 +11,62 @@ import { Router } from '@angular/router';
 })
 export class UserFormComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  user: UserDTO = new UserDTO();
+
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private userService: UserService
+  ) { }
 
   ngOnInit() {
+    let id = this.activatedRoute.snapshot.paramMap.get('id');
+    if (id != null) {
+      this.userService.find(id)
+        .subscribe(response => {
+          this.user = response;
+        },
+          error => {
+            console.log(error);
+          });
+    }
   }
 
-  cancel(){
+  onSubmit() {
+    if (this.user.id == null) {
+      console.log('insert');
+      this.userService.insert(this.user)
+        .subscribe(response => {
+          this.router.navigate(['users']);
+        },
+          error => {
+            console.log(error);
+          });
+    } else {
+      console.log('update');
+      this.userService.update(this.user)
+        .subscribe(response => {
+          this.router.navigate(['users']);
+        },
+          error => {
+            console.log(error);
+          });
+    }
+  }
+
+  delete() {
+    if (confirm('Delete?')) {
+      this.userService.delete(this.user)
+        .subscribe(response => {
+          this.router.navigate(['users']);
+        },
+          error => {
+            console.log(error);
+          });
+    }
+  }
+
+  cancel() {
     this.router.navigate(['users']);
   }
 }

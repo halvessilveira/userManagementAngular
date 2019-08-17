@@ -1,16 +1,47 @@
-<label for="username">Username</label>
-<br/>
-<input type="text" id="username" name="username" placeholder="Username">
-<br/>
-<br/>
-<label for="password">Password</label>
-<br/>
-<input type="password" id="password" name="password" placeholder="Password">
-<br/>
-<br/>
-<label for="nome">Nome</label>
-<br/>
-<input type="text" id="nome" name="nome" placeholder="Nome">
-<br/>
-<br/>
-<button type="button" (click)="cancel()">Cancel</button>
+<form (ngSubmit)="onSubmit()" #userForm="ngForm" style="max-width: 400px">
+
+    <div [hidden]="user.id == null" class="mb-3">
+        <div>
+            Id: {{user.id}}
+        </div>
+    </div>
+
+    <div [hidden]="user.id == null" class="mb-3">
+        <div>
+            Username: {{user.username}}
+        </div>
+    </div>
+
+    <div class="div-height" [hidden]="user.id != null">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" placeholder="Username" [(ngModel)]="user.username"
+            name="username" required #username="ngModel" />
+        <span class="required-text align-text-top" [hidden]="username.valid">
+            Username is required
+        </span>
+    </div>
+
+    <div class="div-height">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Password" [(ngModel)]="user.password"
+            name="password" required #password="ngModel" />
+        <span class="required-text align-text-top" [hidden]="password.valid">
+            Password is required
+        </span>
+    </div>
+
+    <div class="div-height">
+        <label for="nome">Nome</label>
+        <input type="text" class="form-control" id="nome" placeholder="Nome" [(ngModel)]="user.nome" name="nome"
+            required #nome="ngModel" />
+        <span class="required-text align-text-top" [hidden]="nome.valid">
+            Nome is required
+        </span>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-padding" [disabled]="!userForm.form.valid">Save</button>
+    <button type="button" class="btn btn-primary btn-padding" (click)="delete()"
+        [disabled]="user.id == null">delete</button>
+    <button type="button" class="btn btn-dark" (click)="cancel()">Cancel</button>
+
+</form>

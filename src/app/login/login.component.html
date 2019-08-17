@@ -1,17 +1,23 @@
-<form>
-	
-	<label for="username">Username</label>
-	<br/>
-	<input type="text" id="username" placeholder="Username"
-		[(ngModel)]="user.username" name="username"/>
-	<br/>
-	<br/>
-	<label for="password">Password</label>
-	<br/>
-	<input type="password" id="password" placeholder="Password"
-		[(ngModel)]="user.password" name="password"/>
-	<br/>
-	<br/>
-	<button type="button" (click)="signIn()">Sign in</button>
+<form (ngSubmit)="onSubmit()" #authForm="ngForm" style="width: 300px">
+
+	<div class="div-height">
+		<label for="username">Username</label>
+		<input type="text" class="form-control" id="username" placeholder="Username" [(ngModel)]="user.username"
+			name="username" required #username="ngModel" />
+		<span class="required-text align-text-top" [hidden]="username.valid">
+			Username is required
+		</span>
+	</div>
+
+	<div class="div-height">
+		<label for="password">Password</label>
+		<input type="password" class="form-control" id="password" placeholder="Password" [(ngModel)]="user.password"
+			name="password" required #password="ngModel" />
+		<span class="required-text align-text-top" [hidden]="password.valid">
+			Password is required
+		</span>
+	</div>
+
+	<button type="submit" class="btn btn-primary" [disabled]="!authForm.form.valid">Sign in</button>
 
 </form>

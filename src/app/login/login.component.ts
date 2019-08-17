@@ -3,28 +3,21 @@ import { Router } from '@angular/router';
 import { UserDTO } from 'src/models/user.dto';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+	selector: 'app-login',
+	templateUrl: './login.component.html',
+	styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
 
-	user: UserDTO = {
-		id: '',
-		username: '',
-		password: '',
-		nome: '',
-		createTimestamp: '',
-		updateTimestamp: ''
-	};
+	user: UserDTO = new UserDTO();
 
-	constructor(public router: Router){
+	constructor(public router: Router) {
 	}
 
 	ngOnInit() {
 	}
-	
-	signIn(){
+
+	onSubmit() {
 		console.log(this.user);
 		this.router.navigate(['users']);
 	}

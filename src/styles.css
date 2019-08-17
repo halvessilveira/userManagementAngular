@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+.required-text{
+    color: firebrick;
+    font-size: 7pt;
+}
+
+.div-height{
+    height: 100px;
+}
+
+.btn-padding{
+    margin-right: 10px;
+}
