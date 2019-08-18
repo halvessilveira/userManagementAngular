@@ -10,6 +10,9 @@ import { LoginComponent } from './login/login.component';
 import { UserFormComponent } from './user-form/user-form.component';
 
 import { UserService } from '../services/user.service';
+import { AuthenticationService } from 'src/services/authentication.service';
+import { StorageService } from 'src/services/storage.service';
+import { AuthInterceptorProvider } from 'src/interceptors/auth-interseptor';
 
 @NgModule({
   imports: [
@@ -24,7 +27,11 @@ import { UserService } from '../services/user.service';
     LoginComponent,
     UserFormComponent
   ],
-  providers: [UserService],
+  providers: [
+    UserService,
+    AuthenticationService,
+    StorageService,
+    AuthInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

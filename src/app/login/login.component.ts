@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserDTO } from 'src/models/user.dto';
+import { CredentialsDTO } from 'src/models/credentials.dto';
+import { AuthenticationService } from 'src/services/authentication.service';
 
 @Component({
 	selector: 'app-login',
@@ -9,16 +10,24 @@ import { UserDTO } from 'src/models/user.dto';
 })
 export class LoginComponent implements OnInit {
 
-	user: UserDTO = new UserDTO();
+	credentials: CredentialsDTO = new CredentialsDTO();
 
-	constructor(public router: Router) {
+	constructor(
+		public router: Router,
+		public authenticationService: AuthenticationService) {
 	}
 
 	ngOnInit() {
 	}
 
 	onSubmit() {
-		console.log(this.user);
-		this.router.navigate(['users']);
+		this.authenticationService.authenticate(this.credentials)
+			.subscribe(response => {
+				this.authenticationService.successfullLogin(response.headers.get('Authorization'))
+				this.router.navigate(['users']);
+			},
+				error => {
+					console.log(error);
+				});
 	}
 }
