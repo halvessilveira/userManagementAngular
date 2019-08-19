@@ -1,6 +1,9 @@
-<button type="button" class="btn btn-primary" (click)="insert()">New</button>
-<br />
-<br />
+<div>
+	<button type="button" class="btn btn-primary btn-margin-botton"
+		(click)="authenticationService.logout()">Logout</button>
+</div>
+<button type="button" class="btn btn-primary btn-margin-botton" (click)="insert()">New</button>
+
 <table class="table" style="max-width: 600px">
 	<thead class="thead-dark">
 		<tr>
@@ -14,7 +17,7 @@
 		<tr *ngFor="let user of users">
 			<td>{{ user.id }}</td>
 			<td>{{ user.username }}</td>
-			<td>{{ user.nome }}</td>
+			<td>{{ user.name }}</td>
 			<td><button type="button" class="btn btn-link" (click)="update(user.id)">Edit</button></td>
 		</tr>
 	</tbody>

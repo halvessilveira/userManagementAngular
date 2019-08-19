@@ -5,12 +5,14 @@ import { API_CONFIG } from 'src/config/api.config';
 import { LocalUser } from 'src/models/localuser';
 import { StorageService } from './storage.service';
 import * as jwt_decode from 'jwt-decode';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthenticationService {
 
     constructor(public http: HttpClient,
-        public storage: StorageService) {
+        public storage: StorageService,
+        public router: Router) {
     }
 
     authenticate(credentials: CredentialsDTO) {
@@ -34,5 +36,6 @@ export class AuthenticationService {
 
     logout(){
         this.storage.setLocalUser(null);
+		this.router.navigate(['login']);
     }
 }

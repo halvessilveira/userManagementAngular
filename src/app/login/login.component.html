@@ -5,19 +5,23 @@
 		<input type="text" class="form-control" id="username" placeholder="Username" [(ngModel)]="credentials.username"
 			name="username" required #username="ngModel" />
 		<span class="required-text align-text-top" [hidden]="username.valid">
-			Username is required
+			Required.
 		</span>
 	</div>
 
 	<div class="div-height">
 		<label for="password">Password</label>
-		<input type="password" class="form-control" id="password" placeholder="Password" [(ngModel)]="credentials.password"
-			name="password" required #password="ngModel" />
+		<input type="password" class="form-control" id="password" placeholder="Password"
+			[(ngModel)]="credentials.password" name="password" required #password="ngModel" />
 		<span class="required-text align-text-top" [hidden]="password.valid">
-			Password is required
+			Required.
 		</span>
 	</div>
 
-	<button type="submit" class="btn btn-primary" [disabled]="!authForm.form.valid">Sign in</button>
+	<button type="submit" class="btn btn-primary btn-margin-botton">Entrar</button>
+
+	<div>
+		<div class="alert alert-danger" [hidden]="msgValidation == null">{{msgValidation}}</div>
+	</div>
 
 </form>

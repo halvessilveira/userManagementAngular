@@ -11,16 +11,16 @@ export class UserService {
 	}
 
 	findAll(): Observable<UserDTO[]> {
-		return this.http.get<UserDTO[]>(`${API_CONFIG.baseUrl}/users`)
+		return this.http.get<UserDTO[]>(`${API_CONFIG.baseUrl}${API_CONFIG.systenUser}`)
 	}
 
 	find(id: string): Observable<UserDTO> {
-		return this.http.get<UserDTO>(`${API_CONFIG.baseUrl}/users/${id}`)
+		return this.http.get<UserDTO>(`${API_CONFIG.baseUrl}${API_CONFIG.systenUser}/${id}`)
 	}
 
 	insert(obj: UserDTO) {
 		return this.http.post(
-			`${API_CONFIG.baseUrl}/users`,
+			`${API_CONFIG.baseUrl}${API_CONFIG.systenUser}`,
 			obj,
 			{
 				observe: 'response',
@@ -31,7 +31,7 @@ export class UserService {
 
 	update(obj: UserDTO) {
 		return this.http.put(
-			`${API_CONFIG.baseUrl}/users/${obj.id}`,
+			`${API_CONFIG.baseUrl}${API_CONFIG.systenUser}/${obj.id}`,
 			obj,
 			{
 				observe: 'response',
@@ -42,7 +42,7 @@ export class UserService {
 
 	delete(obj: UserDTO) {
 		return this.http.delete(
-			`${API_CONFIG.baseUrl}/users/${obj.id}`,
+			`${API_CONFIG.baseUrl}${API_CONFIG.systenUser}/${obj.id}`,
 			{
 				observe: 'response',
 				responseType: 'text'
