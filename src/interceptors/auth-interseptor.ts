@@ -6,16 +6,16 @@ import { StorageService } from 'src/services/storage.service';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-    constructor(public storage: StorageService) {
-
-    }
+    constructor(
+        public storage: StorageService
+    ) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         let localuser = this.storage.getLocalUser();
         if (localuser) {
             const authReq = req.clone({ headers: req.headers.set('Authorization', 'Bearer ' + localuser.token) });
             return next.handle(authReq);
-        }else{
+        } else {
             return next.handle(req);
         }
     }

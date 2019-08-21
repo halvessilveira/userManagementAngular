@@ -1,1 +1,34 @@
-<router-outlet></router-outlet>
+<nav class="navbar navbar-expand-sm navbar-dark bg-primary" [hidden]="authenticationService.isLoggedIn() == false">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSite">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSite">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link h5 mb-0" routerLink="/home">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link  h5 mb-0" routerLink="/userList">Users</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <span class="navbar-text mr-3" [hidden]="storage.getLocalUser() == null">
+                    Welcome {{storage.getUsername()}}!
+                </span>
+            </li>
+            <li class="nav-item">
+                <div>
+                    <button class="btn btn-outline-light" type="button"
+                        (click)="authenticationService.logout()">Logout</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="page-margin">
+    <router-outlet></router-outlet>
+</div>

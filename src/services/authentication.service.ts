@@ -12,8 +12,8 @@ export class AuthenticationService {
 
     constructor(public http: HttpClient,
         public storage: StorageService,
-        public router: Router) {
-    }
+        public router: Router
+    ) { }
 
     authenticate(credentials: CredentialsDTO) {
         return this.http.post(
@@ -30,12 +30,20 @@ export class AuthenticationService {
         let token = autorizationValue.substring(7);
         let user: LocalUser = new LocalUser();
         user.token = token;
-        user.username = jwt_decode(token).sub;
+        user.username = jwt_decode(token)['sub'];
         this.storage.setLocalUser(user);
     }
 
-    logout(){
+    logout() {
         this.storage.setLocalUser(null);
-		this.router.navigate(['login']);
+        this.router.navigate(['login']);
+    }
+
+    isLoggedIn(): boolean {
+        if(this.storage.getLocalUser() == null){
+            return false;
+        }else{
+            return true;
+        }
     }
 }

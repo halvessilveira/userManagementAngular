@@ -21,4 +21,11 @@ export class StorageService {
             localStorage.setItem(STOREAGE_KEYS.localuser, JSON.stringify(obj));
         }
     }
+
+    getUsername(): string{
+        if(this.getLocalUser() != null){
+            return this.getLocalUser().username;
+        }
+        return null;
+    }
 }

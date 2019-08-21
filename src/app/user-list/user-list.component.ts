@@ -14,27 +14,25 @@ export class UserListComponent implements OnInit {
 
 	users: UserDTO[];
 
-	constructor(public userService: UserService,
+	constructor(
+		public userService: UserService,
 		public router: Router,
 		public authenticationService: AuthenticationService,
-		public storage: StorageService) {
-	}
+		public storage: StorageService
+	) { }
 
 	ngOnInit() {
-		if (this.storage.getLocalUser() == null) {
+		if (!this.authenticationService.isLoggedIn()) {
 			this.authenticationService.logout();
 		} else {
 			this.userService.findAll()
-				.subscribe(response => {
-					this.users = response;
-				},
+				.subscribe(
+					response => {
+						this.users = response;
+					},
 					error => {
 					});
 		}
-	}
-
-	insert() {
-		this.router.navigate(['userForm']);
 	}
 
 	update(id: string) {

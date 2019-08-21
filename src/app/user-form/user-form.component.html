@@ -1,63 +1,69 @@
-<div>
-    <button type="button" class="btn btn-primary btn-margin-botton"
-        (click)="authenticationService.logout()">Logout</button>
-</div>
+<div class="row">
+    <div class="col">
+        <form (ngSubmit)="onSubmit()" #userForm="ngForm" class="form-default" autocomplete="off">
 
-<form (ngSubmit)="onSubmit()" #userForm="ngForm" style="max-width: 400px">
+            <div [hidden]="user.id == null" class="form-group">
+                Id: {{user.id}}
+            </div>
 
-    <div [hidden]="user.id == null" class="mb-3">
-        <div>
-            Id: {{user.id}}
-        </div>
-    </div>
+            <div [hidden]="user.id == null" class="form-group">
+                Username: {{user.username}}
+            </div>
 
-    <div [hidden]="user.id == null" class="mb-3">
-        <div>
-            Username: {{user.username}}
-        </div>
-    </div>
+            <div class="form-group" [hidden]="user.id != null">
+                <label for="username">Username <span class="error-text"
+                        [hidden]="username.valid">(required)</span></label>
+                <input type="text" class="form-control {{username.valid ? 'is-valid': 'is-invalid'}}" id="username"
+                    placeholder="Username" [(ngModel)]="user.username" name="username" required #username="ngModel" />
+            </div>
 
-    <div class="div-height" [hidden]="user.id != null">
-        <label for="username">Username</label>
-        <input type="text" class="form-control" id="username" placeholder="Username" [(ngModel)]="user.username"
-            name="username" required #username="ngModel" />
-        <span class="required-text align-text-top" [hidden]="username.valid">
-            Required.
-        </span>
-    </div>
+            <div class="form-group">
+                <label for="password">Password <span class="error-text"
+                        [hidden]="password.valid">(required)</span></label>
+                <input type="password" class="form-control {{password.valid ? 'is-valid': 'is-invalid'}}" id="password"
+                    placeholder="Password" [(ngModel)]="user.password" name="password" required #password="ngModel" />
+            </div>
 
-    <div class="div-height">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" placeholder="Password" [(ngModel)]="user.password"
-            name="password" required #password="ngModel" />
-        <span class="required-text align-text-top" [hidden]="password.valid">
-            Required.
-        </span>
-    </div>
+            <div class="form-group">
+                <label for="name">Name <span class="error-text" [hidden]="name.valid">(required)</span></label>
+                <input type="text" class="form-control {{name.valid ? 'is-valid': 'is-invalid'}}" id="name"
+                    placeholder="Name" [(ngModel)]="user.name" name="name" required #name="ngModel" />
+            </div>
 
-    <div class="div-height">
-        <label for="name">Name</label>
-        <input type="text" class="form-control" id="name" placeholder="name" [(ngModel)]="user.name" name="name"
-            required #name="ngModel" />
-        <span class="required-text align-text-top" [hidden]="name.valid">
-            Required.
-        </span>
-    </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col">
+                        <div class="text-left">
+                            <button type="submit"
+                                class="btn btn-primary btn-margin-right btn-margin-botton btn-from-default-width">Save</button>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="text-center">
+                            <button type="button"
+                                class="btn btn-primary btn-margin-right btn-margin-botton btn-from-default-width"
+                                (click)="delete()" [disabled]="user.id == null">Delete</button>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="text-right">
+                            <button type="button" class="btn btn-dark btn-margin-botton btn-from-default-width"
+                                routerLink="/userList">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    <button type="submit" class="btn btn-primary btn-margin-right btn-margin-botton">Save</button>
-    <button type="button" class="btn btn-primary btn-margin-right btn-margin-botton " (click)="delete()"
-        [disabled]="user.id == null">Delete</button>
-    <button type="button" class="btn btn-dark btn-margin-botton" (click)="cancel()">Cancel</button>
-
-</form>
-
-<div>
-    <div class="alert alert-danger" [hidden]="msgValidation == null">
-        {{msgValidation}}
-        <br />
-        <br />
-        <div *ngFor="let field of fields">
-            Field {{field.fieldName}}: {{field.msg}}
-        </div>
+            <div class="form-group">
+                <div class="alert alert-danger" [hidden]="msgValidation == null">
+                    {{msgValidation}}
+                    <br />
+                    <br />
+                    <div *ngFor="let field of fields">
+                        Field {{field.fieldName}}: {{field.msg}}
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 </div>

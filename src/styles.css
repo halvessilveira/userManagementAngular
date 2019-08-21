@@ -1,16 +1,31 @@
-.required-text{
+body {
+    background: #eee !important;
+}
+
+.page-margin{
+    margin: 30px 10px;
+}
+
+.error-text{
     color: firebrick;
     font-size: 7pt;
 }
 
-.div-height{
-    height: 100px;
+.max-width-div-list{
+    max-width: 700px;
 }
 
-.btn-margin-right{
-    margin-right: 20px;
+.form-default{
+    max-width: 600px;
+    padding: 30px;
+    background-color:  #fff;
+    margin: auto;
 }
 
-.btn-margin-botton{
-    margin-bottom: 20px;
+.btn-from-default-width{
+    width: 100px;
+}
+
+.pointer{
+    cursor: pointer;
 }

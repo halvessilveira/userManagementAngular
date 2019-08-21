@@ -1,27 +1,35 @@
-<form (ngSubmit)="onSubmit()" #authForm="ngForm" style="width: 300px">
+<div class="row">
+	<div class="col">
+		<form (ngSubmit)="onSubmit()" #authForm="ngForm" class="form-default form-signin" autocomplete="off">
 
-	<div class="div-height">
-		<label for="username">Username</label>
-		<input type="text" class="form-control" id="username" placeholder="Username" [(ngModel)]="credentials.username"
-			name="username" required #username="ngModel" />
-		<span class="required-text align-text-top" [hidden]="username.valid">
-			Required.
-		</span>
+			<div class="form-group">
+				<h2>Sign in</h2>
+			</div>
+
+			<div class="form-group">
+				<label for="username">Username <span class="error-text"
+						[hidden]="username.valid">(required)</span></label>
+				<input type="text" class="form-control {{username.valid ? 'is-valid': 'is-invalid'}}" id="username"
+					placeholder="Username" [(ngModel)]="credentials.username" name="username" required
+					#username="ngModel" />
+			</div>
+
+			<div class="form-group">
+				<label for="password">Password <span class="error-text"
+						[hidden]="password.valid">(required)</span></label>
+				<input type="password" class="form-control {{password.valid ? 'is-valid': 'is-invalid'}}" id="password"
+					placeholder="Password" [(ngModel)]="credentials.password" name="password" required
+					#password="ngModel" />
+			</div>
+
+			<div class="form-group">
+				<button type="submit" class="btn btn-primary">Sign in</button>
+			</div>
+
+			<div class="form-group" [hidden]="msgValidation == null">
+				<div class="alert alert-danger">{{msgValidation}}</div>
+			</div>
+
+		</form>
 	</div>
-
-	<div class="div-height">
-		<label for="password">Password</label>
-		<input type="password" class="form-control" id="password" placeholder="Password"
-			[(ngModel)]="credentials.password" name="password" required #password="ngModel" />
-		<span class="required-text align-text-top" [hidden]="password.valid">
-			Required.
-		</span>
-	</div>
-
-	<button type="submit" class="btn btn-primary btn-margin-botton">Entrar</button>
-
-	<div>
-		<div class="alert alert-danger" [hidden]="msgValidation == null">{{msgValidation}}</div>
-	</div>
-
-</form>
+</div>

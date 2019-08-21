@@ -1,18 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { AuthenticationService } from 'src/services/authentication.service';
+import { StorageService } from 'src/services/storage.service';
 
 @Component({
 	selector: 'app-root',
 	templateUrl: './app.component.html',
 	styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
-	constructor(public router: Router) {
-	}
-
-	ngOnInit() {
-		this.router.navigate(['login']);
-	}
+	constructor(
+		public authenticationService: AuthenticationService,
+        public storage: StorageService
+	) { }
 
 }

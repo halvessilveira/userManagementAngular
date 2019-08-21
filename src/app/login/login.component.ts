@@ -17,8 +17,8 @@ export class LoginComponent implements OnInit {
 	constructor(
 		public router: Router,
 		public authenticationService: AuthenticationService,
-		public storage: StorageService) {
-	}
+		public storage: StorageService
+	) { }
 
 	ngOnInit() {
 		this.storage.setLocalUser(null);
@@ -26,10 +26,11 @@ export class LoginComponent implements OnInit {
 
 	onSubmit() {
 		this.authenticationService.authenticate(this.credentials)
-			.subscribe(response => {
-				this.authenticationService.successfullLogin(response.headers.get('Authorization'))
-				this.router.navigate(['users']);
-			},
+			.subscribe(
+				response => {
+					this.authenticationService.successfullLogin(response.headers.get('Authorization'))
+					this.router.navigate(['home']);
+				},
 				error => {
 					this.msgValidation = JSON.parse(error.error).msg;
 				});

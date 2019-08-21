@@ -3,13 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { UserListComponent } from './user-list/user-list.component'
 import { LoginComponent } from './login/login.component';
 import { UserFormComponent } from './user-form/user-form.component';
-
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-	{ path: 'users', component: UserListComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'userForm', component: UserFormComponent},
-  { path: 'userForm/:id', component: UserFormComponent}
+  { path: 'home', component: HomeComponent },
+  { path: 'userList', component: UserListComponent },
+  { path: 'userForm', component: UserFormComponent },
+  { path: 'userForm/:id', component: UserFormComponent }
 ];
 
 @NgModule({

@@ -13,6 +13,7 @@ import { UserService } from '../services/user.service';
 import { AuthenticationService } from 'src/services/authentication.service';
 import { StorageService } from 'src/services/storage.service';
 import { AuthInterceptorProvider } from 'src/interceptors/auth-interseptor';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   imports: [
@@ -23,8 +24,9 @@ import { AuthInterceptorProvider } from 'src/interceptors/auth-interseptor';
   ],
   declarations: [
     AppComponent,
-    UserListComponent,
     LoginComponent,
+    HomeComponent,
+    UserListComponent,
     UserFormComponent
   ],
   providers: [

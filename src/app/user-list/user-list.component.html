@@ -1,24 +1,32 @@
-<div>
-	<button type="button" class="btn btn-primary btn-margin-botton"
-		(click)="authenticationService.logout()">Logout</button>
+<div class="row">
+	<div class="col">
+		<div class="text-center">
+			<button type="button" class="btn btn-primary" routerLink="/userForm">Register new user</button>
+		</div>
+	</div>
 </div>
-<button type="button" class="btn btn-primary btn-margin-botton" (click)="insert()">New</button>
-
-<table class="table" style="max-width: 600px">
-	<thead class="thead-dark">
-		<tr>
-			<th style="width: 75px">Id</th>
-			<th style="width: 150px">Username</th>
-			<th>Name</th>
-			<th style="width: 75px"></th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr *ngFor="let user of users">
-			<td>{{ user.id }}</td>
-			<td>{{ user.username }}</td>
-			<td>{{ user.name }}</td>
-			<td><button type="button" class="btn btn-link" (click)="update(user.id)">Edit</button></td>
-		</tr>
-	</tbody>
-</table>
+<hr>
+<div class="row">
+	<div class="col">
+		<div class="mx-auto max-width-div-list">
+			<table class="table table-bordered">
+				<thead class="thead-dark">
+					<tr>
+						<th style="width: 75px">Id</th>
+						<th style="width: 150px">Username</th>
+						<th>Name</th>
+						<th style="width: 75px"></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let user of users">
+						<td>{{ user.id }}</td>
+						<td>{{ user.username }}</td>
+						<td>{{ user.name }}</td>
+						<td><button type="button" class="btn btn-link" (click)="update(user.id)">Edit</button></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
